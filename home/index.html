@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Map</title>
+    <link rel="icon" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="getLocation()">
+    <div class="split left">
+        <h1>Welcome User!</h1>
+        <div id="hero">
+            <h1>Farm In</h1> <i class="fa-sharp fa-solid fa-seedling"></i>
+        </div>
+        <h2 style="color: #0487D9;">An End To End Agro Guidance</h2>
+        <!-- CO-ORDINATES -->
+        <br>
+        <div style="display: flex;">
+            <p>Current Location :</p><p id="location"></p>
+        </div>
+        <p id="cal">Wednesday, September 15</p>
+
+        <!-- WEATHER     -->
+        <div id="weather">
+            <div>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/51bM3u01zIL.png" alt="">
+            </div>
+            <div>
+                <h2> 31  ℃ </h2>
+                <h4>Haze</h4>
+            </div> 
+        </div>
+        
+        <select name="soil" id="select" class="select">
+            <option value="null">SELECT A SOIL</option>
+            <option value="blk">Black Soil</option>
+            <option value="red">Red Soil</option>
+            <option value="all">Alluvial Soil</option>
+            <option value="sal">Saline Soil</option>
+        </select>
+        <br>
+        <div>
+            <a id="crop1" href="crops/rice.html" target="_blank"></a> 
+            <a id="crop2" href="crops/wheat.html" target="_blank"></a> 
+            <a id="crop3" href="crops/maize.html" target="_blank"></a> 
+            <a id="crop4" href="crops/cotton.html" target="_blank"></a>
+        </div>
+
+        <div>
+            <a href="https://itsakshayv.github.io/tech-farm/">News</a>
+        </div>
+    </div>
+    <article id="map" class="box split right"></article>
+
+    <script src="app.js"></script>
+    <script>
+        var a = document.getElementById("select");
+        function onChange() { 
+            var r,w,m,c; //Rice | Wheat | Maize | Cotton
+            var val = a.value;
+            if (val == "blk") 
+                {
+                    m = "Maize |";
+                    c = "Cotton";
+                    document.getElementById("crop3").innerHTML = m;
+                    document.getElementById("crop4").innerHTML = c;
+                    console.log(m, c);
+                }
+
+            if (val == "red") 
+                {
+                    r = "Rice |";
+                    w = "Wheat |";
+                    c = "Cotton";
+                    document.getElementById("crop1").innerHTML = r;
+                    document.getElementById("crop3").innerHTML = w;
+                    document.getElementById("crop4").innerHTML = c;
+                    console.log(r, w, c);
+                }
+
+            if (val == "sal") 
+                {
+                    r = "Rice |";
+                    w = "Wheat |";
+                    m = "Maize |"
+                    c = "Cotton";
+                    document.getElementById("crop1").innerHTML = r;
+                    document.getElementById("crop2").innerHTML = w;
+                    document.getElementById("crop3").innerHTML = m;
+                    document.getElementById("crop4").innerHTML = c;
+                    console.log(r, w, m, c);
+                }
+
+            if (val == "all") 
+                {
+                    r = "Rice |";
+                    w = "Wheat |";
+                    m = "Maize"
+                    document.getElementById("crop1").innerHTML = r;
+                    document.getElementById("crop2").innerHTML = w;
+                    document.getElementById("crop3").innerHTML = m;
+                    console.log(r, w, m);
+                }
+
+        }
+
+        a.onchange = onChange;
+        onChange();
+    </script>
+</body>
+</html>
